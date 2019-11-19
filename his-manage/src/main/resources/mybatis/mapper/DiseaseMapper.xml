@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.his.mapper.DiseaseMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.his.pojo.Disease">
+    <id column="disease_id" jdbcType="INTEGER" property="diseaseId" />
+    <result column="disease_name" jdbcType="VARCHAR" property="diseaseName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from disease
+    where disease_id = #{diseaseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.woniu.his.pojo.Disease">
+    insert into disease (disease_id, disease_name)
+    values (#{diseaseId,jdbcType=INTEGER}, #{diseaseName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.his.pojo.Disease">
+    update disease
+    set disease_name = #{diseaseName,jdbcType=VARCHAR}
+    where disease_id = #{diseaseId,jdbcType=INTEGER}
+  </update>
+  <sql id="queryCondition">
+    <if test="qv!=null">
+      <if test=""></if>
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select disease_id, disease_name
+    from disease
+    where disease_id = #{diseaseId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select disease_id, disease_name
+    from disease
+  </select>
+  <select id="selectByDiseaseQueryVo" resultMap="BaseResultMap">
+    <include refid="queryCondition"></include>
+  </select>
+</mapper>
