@@ -1,0 +1,14 @@
+server:
+  port: 11000
+spring:
+  application:
+    name: his-registry-11000
+eureka:
+  client:
+    fetch-registry: false  #是否搜索服务
+    register-with-eureka: false  #不注册自己
+    service-url:
+      defaultZone: http://127.0.0.1:${server.port}/eureka
+  server:
+    enable-self-preservation: false # 关闭自我保护 开发时 关闭
+    eviction-interval-timer-in-ms: 5000 # 每隔5秒进行一次服务列表清理
