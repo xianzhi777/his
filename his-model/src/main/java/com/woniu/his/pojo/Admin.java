@@ -2,41 +2,43 @@ package com.woniu.his.pojo;
 
 import java.util.Date;
 
-public class User {
-    private Integer userId;
+public class Admin {
+    private Integer adminId;
 
     private String account;
 
-    private String password;
-
-    private String userName;
+    private String adminName;
 
     private String address;
-
-    private Double balance;
 
     private Date createTime;
 
     private String creditNum;
 
+    private Integer deptId;
+
     private Integer flag;
+
+    private Integer levelId;
 
     private Integer nationId;
 
+    private String password;
+
     private String phoneNum;
+
+    private String photoUrl;
 
     private String sex;
 
     private Integer status;
 
-    private Integer age;
-
-    public Integer getUserId() {
-        return userId;
+    public Integer getAdminId() {
+        return adminId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
     }
 
     public String getAccount() {
@@ -47,20 +49,12 @@ public class User {
         this.account = account == null ? null : account.trim();
     }
 
-    public String getPassword() {
-        return password;
+    public String getAdminName() {
+        return adminName;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setAdminName(String adminName) {
+        this.adminName = adminName == null ? null : adminName.trim();
     }
 
     public String getAddress() {
@@ -69,14 +63,6 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
-    }
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
     }
 
     public Date getCreateTime() {
@@ -95,12 +81,28 @@ public class User {
         this.creditNum = creditNum == null ? null : creditNum.trim();
     }
 
+    public Integer getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(Integer deptId) {
+        this.deptId = deptId;
+    }
+
     public Integer getFlag() {
         return flag;
     }
 
     public void setFlag(Integer flag) {
         this.flag = flag;
+    }
+
+    public Integer getLevelId() {
+        return levelId;
+    }
+
+    public void setLevelId(Integer levelId) {
+        this.levelId = levelId;
     }
 
     public Integer getNationId() {
@@ -111,12 +113,28 @@ public class User {
         this.nationId = nationId;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
     public String getPhoneNum() {
         return phoneNum;
     }
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum == null ? null : phoneNum.trim();
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl == null ? null : photoUrl.trim();
     }
 
     public String getSex() {
@@ -135,31 +153,24 @@ public class User {
         this.status = status;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     @Override
     public String toString() {
-        return "User{" +
-                "userId=" + userId +
+        return "Admin{" +
+                "adminId=" + adminId +
                 ", account='" + account + '\'' +
-                ", password='" + password + '\'' +
-                ", userName='" + userName + '\'' +
+                ", adminName='" + adminName + '\'' +
                 ", address='" + address + '\'' +
-                ", balance=" + balance +
                 ", createTime=" + createTime +
                 ", creditNum='" + creditNum + '\'' +
+                ", deptId=" + deptId +
                 ", flag=" + flag +
+                ", levelId=" + levelId +
                 ", nationId=" + nationId +
+                ", password='" + password + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
+                ", photoUrl='" + photoUrl + '\'' +
                 ", sex='" + sex + '\'' +
                 ", status=" + status +
-                ", age=" + age +
                 '}';
     }
 }
