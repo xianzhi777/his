@@ -11,6 +11,9 @@
     <modules>
         <module>his-model</module>
         <module>his-model</module>
+        <module>his-eureka-11000</module>
+        <module>his-gateway-10010</module>
+        <module>his-manage</module>
     </modules>
 
     <parent>
