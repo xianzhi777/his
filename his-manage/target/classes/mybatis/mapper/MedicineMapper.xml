@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.his.mapper.MedicineMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.his.pojo.Medicine">
+    <id column="medicine_id" jdbcType="INTEGER" property="medicineId" />
+    <result column="medicine_count" jdbcType="INTEGER" property="medicineCount" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="medicine_name" jdbcType="VARCHAR" property="medicineName" />
+    <result column="medicine_price" jdbcType="DOUBLE" property="medicinePrice" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from medicine
+    where medicine_id = #{medicineId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.woniu.his.pojo.Medicine">
+    insert into medicine (medicine_id, medicine_count, flag,
+      medicine_name, medicine_price, status
+      )
+    values (#{medicineId,jdbcType=INTEGER}, #{medicineCount,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER},
+      #{medicineName,jdbcType=VARCHAR}, #{medicinePrice,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.his.pojo.Medicine">
+    update medicine
+    set medicine_count = #{medicineCount,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER},
+      medicine_name = #{medicineName,jdbcType=VARCHAR},
+      medicine_price = #{medicinePrice,jdbcType=DOUBLE},
+      status = #{status,jdbcType=INTEGER}
+    where medicine_id = #{medicineId,jdbcType=INTEGER}
+  </update>
+  <sql id="queryCondition">
+    <if test="qv!=null">
+      <if test=""></if>
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select medicine_id, medicine_count, flag, medicine_name, medicine_price, status
+    from medicine
+    where medicine_id = #{medicineId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select medicine_id, medicine_count, flag, medicine_name, medicine_price, status
+    from medicine
+  </select>
+  <select id="selectByMedicineQueryVo" resultMap="BaseResultMap">
+    <include refid="queryCondition"></include>
+  </select>
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.his.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.his.pojo.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="balance" jdbcType="DOUBLE" property="balance" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="credit_num" jdbcType="VARCHAR" property="creditNum" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="nation_id" jdbcType="INTEGER" property="nationId" />
+    <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.woniu.his.pojo.User">
+    insert into t_user (user_id, account, password,
+      user_name, address, balance,
+      create_time, credit_num, flag,
+      nation_id, phone_num, sex,
+      status, age)
+    values (#{userId,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{userName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{balance,jdbcType=DOUBLE},
+      #{createTime,jdbcType=TIMESTAMP}, #{creditNum,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER},
+      #{nationId,jdbcType=INTEGER}, #{phoneNum,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{age,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.his.pojo.User">
+    update t_user
+    set account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DOUBLE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      credit_num = #{creditNum,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      nation_id = #{nationId,jdbcType=INTEGER},
+      phone_num = #{phoneNum,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <sql id="queryCondition">
+    <if test="qv!=null">
+      <if test=""></if>
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="userVo">
+    select user_id, account, password, user_name, address, balance, create_time, credit_num,
+    flag, nation_id, phone_num, sex, status, age
+    from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultType="userVo">
+    select *
+    from t_user u,nation n
+    where u.nation_id=n.nation_id
+  </select>
+  <select id="selectByUserQueryVo" resultType="userVo">
+    <include refid="queryCondition"></include>
+  </select>
+</mapper>

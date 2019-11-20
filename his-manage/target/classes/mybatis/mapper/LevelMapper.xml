@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.his.mapper.LevelMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.his.pojo.Level">
+    <id column="level_id" jdbcType="INTEGER" property="levelId" />
+    <result column="level_name" jdbcType="VARCHAR" property="levelName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from level
+    where level_id = #{levelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.woniu.his.pojo.Level">
+    insert into level (level_id, level_name)
+    values (#{levelId,jdbcType=INTEGER}, #{levelName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.his.pojo.Level">
+    update level
+    set level_name = #{levelName,jdbcType=VARCHAR}
+    where level_id = #{levelId,jdbcType=INTEGER}
+  </update>
+  <sql id="queryCondition">
+    <if test="qv!=null">
+      <if test=""></if>
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select level_id, level_name
+    from level
+    where level_id = #{levelId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select level_id, level_name
+    from level
+  </select>
+  <select id="selectByLevelQueryVo" resultMap="BaseResultMap">
+    <include refid="queryCondition"></include>
+  </select>
+</mapper>

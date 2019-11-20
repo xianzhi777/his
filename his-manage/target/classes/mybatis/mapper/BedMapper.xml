@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.his.mapper.BedMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.his.pojo.Bed">
+    <id column="bed_id" jdbcType="INTEGER" property="bedId" />
+    <result column="bed_num" jdbcType="VARCHAR" property="bedNum" />
+    <result column="floor" jdbcType="VARCHAR" property="floor" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bed
+    where bed_id = #{bedId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.woniu.his.pojo.Bed">
+    insert into bed (bed_id, bed_num, floor,
+      status)
+    values (#{bedId,jdbcType=INTEGER}, #{bedNum,jdbcType=VARCHAR}, #{floor,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.his.pojo.Bed">
+    update bed
+    set bed_num = #{bedNum,jdbcType=VARCHAR},
+      floor = #{floor,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where bed_id = #{bedId,jdbcType=INTEGER}
+  </update>
+  <sql id="queryCondition">
+    <if test="qv!=null">
+      <if test=""></if>
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select bed_id, bed_num, floor, status
+    from bed
+    where bed_id = #{bedId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select bed_id, bed_num, floor, status
+    from bed
+  </select>
+  <select id="selectByBedQueryVo" resultMap="BaseResultMap">
+    select bed_id, bed_num, floor, status
+    from bed
+    <where>
+      <include refid="queryCondition"></include>
+    </where>
+  </select>
+</mapper>

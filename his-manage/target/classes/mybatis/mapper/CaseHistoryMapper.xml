@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.his.mapper.CaseHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.his.pojo.CaseHistory">
+    <id column="ch_id" jdbcType="INTEGER" property="chId" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="disease_id" jdbcType="INTEGER" property="diseaseId" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from casehistory
+    where ch_id = #{chId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.woniu.his.pojo.CaseHistory">
+    insert into casehistory (ch_id, admin_id, create_time,
+      description, disease_id, flag,
+      user_id)
+    values (#{chId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{description,jdbcType=VARCHAR}, #{diseaseId,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER},
+      #{userId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.his.pojo.CaseHistory">
+    update casehistory
+    set admin_id = #{adminId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      disease_id = #{diseaseId,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER}
+    where ch_id = #{chId,jdbcType=INTEGER}
+  </update>
+  <sql id="queryCondition">
+    <if test="qv!=null">
+      <if test=""></if>
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="caseHistoryVo">
+    select ch_id, admin_id, create_time, description, disease_id, flag, user_id
+    from casehistory
+    where ch_id = #{chId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultType="caseHistoryVo">
+    select ch_id, admin_id, create_time, description, disease_id, flag, user_id
+    from casehistory
+  </select>
+  <select id="selectByCaseHistoryQueryVo" resultType="caseHistoryVo">
+
+    <include refid="queryCondition"></include>
+  </select>
+</mapper>
