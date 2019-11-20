@@ -78,8 +78,10 @@
     where a.nation_id=n.nation_id and a.dept_id=d.dept_id and a.level_id=l.level_id
   </select>
   <select id="selectByAdminQueryVo"  resultType="adminVo">
-    select * from admin a,nation n,department d,level l
-    where a.nation_id=n.nation_id and a.dept_id=d.dept_id and a.level_id=l.level_id
-    <include refid="queryCondition"></include>
+    select * from admin a
+   <where>
+     <include refid="queryCondition"></include>
+   </where>
+
   </select>
 </mapper>

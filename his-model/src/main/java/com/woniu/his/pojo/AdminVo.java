@@ -1,6 +1,8 @@
 package com.woniu.his.pojo;
 
 import lombok.Data;
+import lombok.Value;
+import lombok.experimental.Accessors;
 
 /**
  * 功能描述:<br>
