@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.his.mapper.NursingMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.his.pojo.Nursing">
+    <id column="nur_id" jdbcType="INTEGER" property="nurId" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="bed_id" jdbcType="INTEGER" property="bedId" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="nur_date" jdbcType="TIMESTAMP" property="nurDate" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from nursing
+    where nur_id = #{nurId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.woniu.his.pojo.Nursing">
+    insert into nursing (nur_id, admin_id, bed_id,
+      detail, nur_date, user_id
+      )
+    values (#{nurId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{bedId,jdbcType=INTEGER},
+      #{detail,jdbcType=VARCHAR}, #{nurDate,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.his.pojo.Nursing">
+    update nursing
+    set admin_id = #{adminId,jdbcType=INTEGER},
+      bed_id = #{bedId,jdbcType=INTEGER},
+      detail = #{detail,jdbcType=VARCHAR},
+      nur_date = #{nurDate,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=INTEGER}
+    where nur_id = #{nurId,jdbcType=INTEGER}
+  </update>
+  <sql id="queryCondition">
+    <if test="qv!=null">
+      <if test=""></if>
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="nursingVo">
+    select nur_id, admin_id, bed_id, detail, nur_date, user_id
+    from nursing
+    where nur_id = #{nurId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultType="nursingVo">
+    select nur_id, admin_id, bed_id, detail, nur_date, user_id
+    from nursing
+  </select>
+  <select id="selectByNursingQueryVo" resultType="nursingVo">
+    <include refid="queryCondition"></include>
+  </select>
+</mapper>
