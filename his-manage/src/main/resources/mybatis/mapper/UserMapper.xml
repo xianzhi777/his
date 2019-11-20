@@ -62,9 +62,9 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultType="userVo">
-    select user_id, account, password, user_name, address, balance, create_time, credit_num,
-    flag, nation_id, phone_num, sex, status, age
-    from t_user
+    select *
+    from t_user u,nation n
+    where u.nation_id=n.nation_id
   </select>
   <select id="selectByUserQueryVo" resultType="userVo">
     <include refid="queryCondition"></include>
