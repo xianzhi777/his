@@ -29,6 +29,9 @@
       <if test="qv.password!=null and qv.password!=''">
         and password=#{qv.password}
       </if>
+      <if test="qv.status!=null">
+        and status=#{qv.status}
+      </if>
     </if>
   </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -78,10 +81,11 @@
     where a.nation_id=n.nation_id and a.dept_id=d.dept_id and a.level_id=l.level_id
   </select>
   <select id="selectByAdminQueryVo"  resultType="adminVo">
-    select * from admin a
-   <where>
+    select * from admin a,nation n,department d,level l
+    where a.nation_id=n.nation_id and a.dept_id=d.dept_id and a.level_id=l.level_id
+
      <include refid="queryCondition"></include>
-   </where>
+
 
   </select>
 </mapper>

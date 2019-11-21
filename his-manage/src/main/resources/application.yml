@@ -8,6 +8,12 @@ mybatis:
 spring:
   application:
     name: item-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtualHost: /
   datasource:
     url: jdbc:mysql://10.10.10.50:3306/hisdb
     username: zyf
