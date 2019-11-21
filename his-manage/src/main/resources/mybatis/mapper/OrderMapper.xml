@@ -9,7 +9,7 @@
     <result column="flag" jdbcType="INTEGER" property="flag" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_order
+    update  t_order set flag=0
     where order_id = #{orderId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.woniu.his.pojo.Order">
@@ -37,8 +37,19 @@
     where order_id = #{orderId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultType="orderVo">
-    select order_id, create_time, total_price, status, flag
-    from t_order
+    select o.order_id,u.user_name,m.medicine_name,m.medicine_price,mo.count,o.total_price,op.opr_name,op.opr_price,mo.total_price,o.create_time
+    from t_order o
+    inner join med_order mo
+    on o.order_id=mo.order_id and o.flag=1
+    left join opr_order oo
+    on o.order_id=oo.order_id and o.flag=1
+    left join t_user u
+    on o.user_id=u.user_id and o.flag=1
+LEFT JOIN operation op
+on op.opr_id=oo.opr_id and o.flag=1
+LEFT JOIN medicine m
+on m.medicine_id= mo.medicine_id and o.flag=1
+
   </select>
   <select id="selectByOrderQueryVo" resultType="orderVo">
     <include refid="queryCondition"></include>
