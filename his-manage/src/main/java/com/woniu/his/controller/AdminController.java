@@ -24,4 +24,11 @@ public class AdminController {
         }
         return list.get(0);
     }
+
+    @RequestMapping("/findadmin3")
+    public List<AdminVo> findAllAdmin3(){
+        List<AdminVo> list=adminService.selectAllAdmin3();
+        System.out.println(list.size());
+        return list;
+    }
 }

@@ -9,4 +9,6 @@ import java.util.List;
 public interface IAdminService {
 
     List<AdminVo> selectAdminByAccountAndPassword(AdminQueryVo adminQueryVo);
+
+    List<AdminVo> selectAllAdmin3();
 }
