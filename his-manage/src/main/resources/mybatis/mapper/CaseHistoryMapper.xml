@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.woniu.his.mapper.CaseHistoryMapper">
-  <resultMap id="BaseResultMap" type="com.woniu.his.pojo.CaseHistory">
-    <id column="ch_id" jdbcType="INTEGER" property="chId" />
-    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="disease_id" jdbcType="INTEGER" property="diseaseId" />
-    <result column="flag" jdbcType="INTEGER" property="flag" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <resultMap id="BaseResultMap" type="com.woniu.his.pojo.CaseHistory">
+        <id column="ch_id" jdbcType="INTEGER" property="chId"/>
+        <result column="admin_id" jdbcType="INTEGER" property="adminId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="disease_id" jdbcType="INTEGER" property="diseaseId"/>
+        <result column="flag" jdbcType="INTEGER" property="flag"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from casehistory
     where ch_id = #{chId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.woniu.his.pojo.CaseHistory">
+    <insert id="insert" parameterType="com.woniu.his.pojo.CaseHistory">
     insert into casehistory (ch_id, admin_id, create_time,
       description, disease_id, flag,
       user_id)
@@ -22,7 +22,7 @@
       #{description,jdbcType=VARCHAR}, #{diseaseId,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER},
       #{userId,jdbcType=INTEGER})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.woniu.his.pojo.CaseHistory">
+    <update id="updateByPrimaryKey" parameterType="com.woniu.his.pojo.CaseHistory">
     update casehistory
     set admin_id = #{adminId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -32,22 +32,36 @@
       user_id = #{userId,jdbcType=INTEGER}
     where ch_id = #{chId,jdbcType=INTEGER}
   </update>
-  <sql id="queryCondition">
-    <if test="qv!=null">
-      <if test=""></if>
-    </if>
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="caseHistoryVo">
+    <sql id="queryCondition">
+        <if test="qv!=null">
+            <if test=""></if>
+        </if>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="caseHistoryVo">
     select ch_id, admin_id, create_time, description, disease_id, flag, user_id
     from casehistory
     where ch_id = #{chId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultType="caseHistoryVo">
-    select ch_id, admin_id, create_time, description, disease_id, flag, user_id
-    from casehistory
+    <select id="selectAll" resultType="caseHistoryVo">
+    select *
+    from casehistory c
+    LEFT JOIN admin a
+    on c.admin_id=a.admin_id
+    LEFT JOIN t_user u
+    on c.user_id=u.user_id
+    LEFT JOIN disease d
+    on c.disease_id=d.disease_id
+    LEFT JOIN case_med cm
+    on c.ch_id=cm.case_id
+    LEFT JOIN case_opr co
+    on c.ch_id=co.opr_id
+    LEFT JOIN medicine m
+    on cm.medicine_id=m.medicine_id
+    LEFT JOIN operation o
+    on o.opr_id=co.opr_id
   </select>
-  <select id="selectByCaseHistoryQueryVo" resultType="caseHistoryVo">
+    <select id="selectByCaseHistoryQueryVo" resultType="caseHistoryVo">
 
-    <include refid="queryCondition"></include>
-  </select>
+        <include refid="queryCondition"></include>
+    </select>
 </mapper>
