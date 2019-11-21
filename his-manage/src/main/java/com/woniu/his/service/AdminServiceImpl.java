@@ -18,4 +18,26 @@ public class AdminServiceImpl implements IAdminService{
     public List<AdminVo> selectAdminByAccountAndPassword(AdminQueryVo adminQueryVo) {
         return adminMapper.selectByAdminQueryVo(adminQueryVo);
     }
+
+    @Override
+    public List<AdminVo> selectAllAdmin3() {
+        AdminQueryVo adminQueryVo=new AdminQueryVo();
+        adminQueryVo.setStatus(3);
+        return adminMapper.selectByAdminQueryVo(adminQueryVo);
+    }
+
+    @Override
+    public int insertAdmin3(Admin admin) {
+        admin.setStatus(3);
+        admin.setFlag(1);
+        adminMapper.insert(admin);
+        return 1;
+    }
+
+    @Override
+    public int updateAdmin3(Admin admin) {
+        admin.setStatus(3);
+        admin.setFlag(1);
+        return adminMapper.updateByPrimaryKey(admin);
+    }
 }
