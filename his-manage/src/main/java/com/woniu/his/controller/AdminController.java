@@ -2,13 +2,10 @@ package com.woniu.his.controller;
 
 import com.woniu.his.pojo.Admin;
 import com.woniu.his.pojo.AdminVo;
-import com.woniu.his.pojo.User;
 import com.woniu.his.service.IAdminService;
 import com.woniu.his.vo.AdminQueryVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +38,28 @@ public class AdminController {
     @RequestMapping("updateById3")
     public int updateAdmin3(@RequestBody Admin admin){
         adminService.updateAdmin3(admin);
+        return 1;
+    }
+
+    @GetMapping("allStaff")
+    public List<AdminVo> getAllStaff(){
+        return adminService.findAllStaff();
+    }
+
+    @PutMapping("updStaff")
+    public Integer updStaff(@RequestBody Admin admin){
+        adminService.modifyStaff(admin);
+        return 1;
+    }
+
+    @PostMapping("addStaff")
+    public Integer addStaff(@RequestBody Admin admin){
+        adminService.addStaff(admin);
+        return 1;
+    }
+    @DeleteMapping("delStaff/{id}")
+    public Integer delStaff(@PathVariable("id") Integer id){
+        adminService.removeStaffById(id);
         return 1;
     }
 }

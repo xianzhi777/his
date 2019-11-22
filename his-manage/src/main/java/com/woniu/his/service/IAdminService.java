@@ -16,4 +16,12 @@ public interface IAdminService {
     int insertAdmin3(Admin admin);
 
     int updateAdmin3(Admin admin);
+
+    List<AdminVo> findAllStaff();
+
+    void modifyStaff(Admin admin);
+
+    void addStaff(Admin admin);
+
+    void removeStaffById(Integer id);
 }
