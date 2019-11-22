@@ -4,7 +4,7 @@ import com.woniu.his.pojo.Appointment;
 import com.woniu.his.pojo.AppointmentVo;
 import com.woniu.his.vo.AppointmentQueryVo;
 import org.apache.ibatis.annotations.Param;
-
+import java.util.Date;
 import java.util.List;
 
 public interface AppointmentMapper {
@@ -16,7 +16,16 @@ public interface AppointmentMapper {
 
     List<AppointmentVo> selectAll();
 
+    List<AppointmentVo> selectAllNoBed();
+    List<AppointmentVo> selectAllNoBedByDatetime(String startTime,String endTime);
+
+    List<AppointmentVo> selectAllBed();
+
+    List<AppointmentVo> selectAllBedByDatetime(String startTime,String endTime);
+
     List<AppointmentVo> selectByAppointmentQueryVo(@Param("qv") AppointmentQueryVo appointmentQueryVo);
 
     int updateByPrimaryKey(Appointment record);
+
+
 }

@@ -36,7 +36,7 @@
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select bed_id, bed_num, floor, status
-    from bed
+    from bed where bed_id &gt; 0
   </select>
   <select id="selectByBedQueryVo" resultMap="BaseResultMap">
     select bed_id, bed_num, floor, status
