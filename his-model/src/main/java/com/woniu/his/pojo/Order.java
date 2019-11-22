@@ -15,6 +15,7 @@ public class Order {
     private Integer orderId;
     private Date createTime;
     private Double totalPrice;
+    private Integer userId;
     private Integer status;
     private Integer flag;
 
@@ -36,6 +37,14 @@ public class Order {
 
     public Double getTotalPrice() {
         return totalPrice;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public void setTotalPrice(Double totalPrice) {
@@ -64,6 +73,7 @@ public class Order {
                 "orderId=" + orderId +
                 ", createTime=" + createTime +
                 ", totalPrice=" + totalPrice +
+                ", userId=" + userId +
                 ", status=" + status +
                 ", flag=" + flag +
                 '}';

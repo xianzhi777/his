@@ -16,7 +16,7 @@ spring:
     virtualHost: /
   datasource:
     url: jdbc:mysql://10.10.10.50:3306/hisdb
-    username: hht
+    username: zyf
     password: 123
     dbcp2:
       min-idle: 5                                        # 数据库连接池的最小维持连接数

@@ -50,6 +50,28 @@
     from appointment a,t_user u,admin ad,bed b
     where a.user_id=u.user_id and a.admin_id=ad.admin_id and a.bed_id=b.bed_id
   </select>
+  <select id="selectAllNoBed" resultType="appointmentVo">
+     select *
+    from appointment a,t_user u,admin ad,bed b
+    where a.user_id=u.user_id and a.admin_id=ad.admin_id and a.bed_id=b.bed_id and a.bed_id=0 and a.flag=1
+  </select>
+  <select id="selectAllNoBedByDatetime" resultType="appointmentVo">
+     select *
+    from appointment a,t_user u,admin ad,bed b
+    where a.user_id=u.user_id and a.admin_id=ad.admin_id and a.bed_id=b.bed_id and a.bed_id=0 and a.flag=1
+    and a.create_time between #{startTime} and #{endTime}
+  </select>
+  <select id="selectAllBed" resultType="appointmentVo">
+     select *
+    from appointment a,t_user u,admin ad,bed b
+    where a.user_id=u.user_id and a.admin_id=ad.admin_id and a.bed_id=b.bed_id and a.bed_id != 0 and a.flag=1
+  </select>
+  <select id="selectAllBedByDatetime" resultType="appointmentVo">
+     select *
+    from appointment a,t_user u,admin ad,bed b
+    where a.user_id=u.user_id and a.admin_id=ad.admin_id and a.bed_id=b.bed_id and a.bed_id != 0 and a.flag=1
+    and a.create_time between #{startTime} and #{endTime}
+  </select>
   <select id="selectByAppointmentQueryVo" resultType="appointmentVo">
      select *
     from appointment a,t_user u,admin ad,bed b
