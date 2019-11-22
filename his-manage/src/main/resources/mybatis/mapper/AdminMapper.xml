@@ -32,6 +32,9 @@
       <if test="qv.status!=null">
         and status=#{qv.status}
       </if>
+      <if test="qv.hStatus!=null and qv.hStatus!=''">
+        and status not in ${qv.hStatus}
+      </if>
     </if>
   </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -83,7 +86,7 @@
   <select id="selectByAdminQueryVo"  resultType="adminVo">
     select * from admin a,nation n,department d,level l
     where a.nation_id=n.nation_id and a.dept_id=d.dept_id and a.level_id=l.level_id
-
+    and flag=1
      <include refid="queryCondition"></include>
 
 

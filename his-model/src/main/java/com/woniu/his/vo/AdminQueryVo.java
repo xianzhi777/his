@@ -16,4 +16,5 @@ public class AdminQueryVo {
     private String password;
     private String adminName;
     private Integer status;
+    private String hStatus;
 }

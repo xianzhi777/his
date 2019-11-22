@@ -4,7 +4,6 @@ import com.woniu.his.mapper.AdminMapper;
 import com.woniu.his.pojo.Admin;
 import com.woniu.his.pojo.AdminVo;
 import com.woniu.his.vo.AdminQueryVo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -39,5 +38,30 @@ public class AdminServiceImpl implements IAdminService{
         admin.setStatus(3);
         admin.setFlag(1);
         return adminMapper.updateByPrimaryKey(admin);
+    }
+
+    @Override
+    public List<AdminVo> findAllStaff() {
+        AdminQueryVo adminQueryVo=new AdminQueryVo();
+        adminQueryVo.setHStatus("(3,4)");
+        return adminMapper.selectByAdminQueryVo(adminQueryVo);
+    }
+
+    @Override
+    public void modifyStaff(Admin admin) {
+        adminMapper.updateByPrimaryKey(admin);
+    }
+
+    @Override
+    public void addStaff(Admin admin) {
+        admin.setFlag(1);
+        adminMapper.insert(admin);
+    }
+
+    @Override
+    public void removeStaffById(Integer id) {
+        Admin admin=adminMapper.selectByPrimaryKey(id);
+        admin.setFlag(0);
+        adminMapper.updateByPrimaryKey(admin);
     }
 }
