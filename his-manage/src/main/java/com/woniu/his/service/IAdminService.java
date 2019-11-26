@@ -24,4 +24,6 @@ public interface IAdminService {
     void addStaff(Admin admin);
 
     void removeStaffById(Integer id);
+
+    AdminVo selectAdminById(int id);
 }

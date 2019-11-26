@@ -54,4 +54,12 @@ on m.medicine_id= mo.medicine_id and o.flag=1
   <select id="selectByOrderQueryVo" resultType="orderVo">
     <include refid="queryCondition"></include>
   </select>
+  <select id="selectOperationByOrderID" resultType="operation">
+    select o.* from t_order t
+    left join opr_order r
+    on t.order_id=r.order_id
+    left join operation o
+    on r.opr_id=o.opr_id
+    where t.order_id=#{id}
+  </select>
 </mapper>

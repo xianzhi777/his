@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService {
         user.setCreateTime(new Date());
         userMapper.insert(user);
     }
+
+    @Override
+    public UserVo getUserById(int id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
 }

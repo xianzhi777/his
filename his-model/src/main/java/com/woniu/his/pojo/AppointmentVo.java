@@ -1,6 +1,7 @@
 package com.woniu.his.pojo;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * 功能描述:<br>
@@ -16,4 +17,5 @@ public class AppointmentVo extends Appointment {
     private String adminName;
     private String floor;
     private String bedNum;
+
 }

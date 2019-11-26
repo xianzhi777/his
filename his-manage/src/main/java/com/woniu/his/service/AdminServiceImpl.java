@@ -64,4 +64,9 @@ public class AdminServiceImpl implements IAdminService{
         admin.setFlag(0);
         adminMapper.updateByPrimaryKey(admin);
     }
+
+    @Override
+    public AdminVo selectAdminById(int id) {
+        return adminMapper.selectByPrimaryKey(id);
+    }
 }

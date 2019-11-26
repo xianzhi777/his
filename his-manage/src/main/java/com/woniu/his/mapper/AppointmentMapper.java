@@ -27,5 +27,5 @@ public interface AppointmentMapper {
 
     int updateByPrimaryKey(Appointment record);
 
-
+    List<AppointmentVo> selectAllAppoByDatetime(String startTime,String endTime);
 }

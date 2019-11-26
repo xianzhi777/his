@@ -12,6 +12,7 @@ public interface IAppointmentService {
     List<AppointmentVo> findAllBed();
     List<AppointmentVo> findAllBedByDatetime(String startTime, String endTime);
     Appointment findById();
-
-
+    List<AppointmentVo> findAll();
+    List<AppointmentVo> selectAllAppoByDatetime(String startTime,String endTime);
+    void addAppointmentToRedis(AppointmentVo appointmentVo);
 }

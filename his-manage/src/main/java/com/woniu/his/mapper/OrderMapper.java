@@ -1,5 +1,6 @@
 package com.woniu.his.mapper;
 
+import com.woniu.his.pojo.Operation;
 import com.woniu.his.pojo.Order;
 import com.woniu.his.pojo.OrderVo;
 import com.woniu.his.vo.OrderQueryVo;
@@ -19,4 +20,6 @@ public interface OrderMapper {
     List<OrderVo> selectByOrderQueryVo(@Param("qv") OrderQueryVo orderQueryVo);
 
     int updateByPrimaryKey(Order record);
+
+    List<Operation> selectOperationByOrderID(int orderId);
 }

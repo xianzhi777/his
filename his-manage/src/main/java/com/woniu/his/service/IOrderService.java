@@ -7,4 +7,5 @@ import java.util.List;
 public interface IOrderService {
     List<OrderVo> findAll();
     int delById(Integer id);
+    void countTotalPrice(Integer id);
 }

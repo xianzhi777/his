@@ -23,6 +23,19 @@ spring:
       initial-size: 5                                       # 初始化连接数
       max-total: 5                                          # 最大连接数
       max-wait-millis: 200                                 # 等待连接获取的最大超时时间
+  redis:
+    #地址
+    host: 192.168.179.122
+    #端口
+    port: 6379
+    #索引库
+    database: 1
+    #密码
+    password:
+    #超时时间
+    timeout: 5000ms
+    session:
+      store-type: redis
 eureka:
   client:
     service-url:
